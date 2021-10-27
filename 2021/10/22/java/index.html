@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://example.com/2021/10/22/java/memory.png">
 <meta property="og:image" content="http://example.com/2021/10/22/java/java/array.png">
 <meta property="article:published_time" content="2021-10-22T12:36:26.000Z">
-<meta property="article:modified_time" content="2021-10-26T15:35:50.000Z">
+<meta property="article:modified_time" content="2021-10-27T08:49:04.000Z">
 <meta property="article:author" content="marscarm">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -373,8 +373,13 @@
 </ul>
 <p>方法体：定义方法的功能：注意返回值</p>
 </blockquote>
-<h4 id="2、方法调用"><a href="#2、方法调用" class="headerlink" title="2、方法调用"></a>2、方法调用</h4><p>调用方式1：对象名.方法名</p>
-<p>调用方式2：如果是类方法的话，可以直接在类中直接调用</p>
+<h4 id="2、方法调用"><a href="#2、方法调用" class="headerlink" title="2、方法调用"></a>2、方法调用</h4><p>调用方式——非静态方法1：对象名.方法名（没有staic修饰，必须初始化对象）</p>
+<p>调用方式2——静态方法：如果是类方法的话，可以直接在类中直接调用（static）</p>
+<p>（非）静态方法之间可以相互调用。静态方法可以调用非静态方法，而不能反之。</p>
+<blockquote>
+<p>static：</p>
+<p>static修饰的方法与类同生命周期，没有static修饰的方法当创建对象时才产生</p>
+</blockquote>
 <h4 id="3、引用传递-amp-值传递"><a href="#3、引用传递-amp-值传递" class="headerlink" title="3、引用传递&amp;值传递"></a>3、引用传递&amp;值传递</h4><p>java是值传递</p>
 <h4 id="4、重载"><a href="#4、重载" class="headerlink" title="4、重载"></a>4、重载</h4><ul>
 <li><p>重载：在一个类中有相同的函数名，但形参不同</p>

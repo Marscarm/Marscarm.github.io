@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>java杂项 | Marscarm的博客</title>
+  <title>javaOO | Marscarm的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java杂项">
+  <meta name="description" content="摘要：本篇blog主要讨论java面向对象基础，包括类与对象、封装、继承、多态等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java杂项">
-<meta property="og:url" content="http://example.com/2021/10/24/java%E6%9D%82%E9%A1%B9/index.html">
+<meta property="og:title" content="javaOO">
+<meta property="og:url" content="http://example.com/2021/10/27/javaOO/index.html">
 <meta property="og:site_name" content="Marscarm的博客">
-<meta property="og:description" content="java杂项">
+<meta property="og:description" content="摘要：本篇blog主要讨论java面向对象基础，包括类与对象、封装、继承、多态等">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-24T02:56:36.000Z">
-<meta property="article:modified_time" content="2021-10-27T08:29:28.000Z">
+<meta property="article:published_time" content="2021-10-27T07:58:09.000Z">
+<meta property="article:modified_time" content="2021-10-27T08:31:36.000Z">
 <meta property="article:author" content="marscarm">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Marscarm的博客" type="application/atom+xml">
@@ -157,28 +158,50 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-java杂项" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-javaOO" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      java杂项
+      javaOO
     </h1>
   
 
         
-        <a href="/2021/10/24/java%E6%9D%82%E9%A1%B9/" class="archive-article-date">
-  	<time datetime="2021-10-24T02:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-24</time>
+        <a href="/2021/10/27/javaOO/" class="archive-article-date">
+  	<time datetime="2021-10-27T07:58:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id><a href="#" class="headerlink" title></a></h1><h1 id="java杂项"><a href="#java杂项" class="headerlink" title="java杂项"></a>java杂项</h1><span id="more"></span>
-<p>1、让一个数组B等于另一个数组A，改变B的值也会影响到A的值<br>2、每行输出三个这种操作可以：普通输出就用print，输出三个后就println，或者来个print(“\n”)<br>3、void方法也可以return，只不过return空，即 return;</p>
+        <h1 id><a href="#" class="headerlink" title></a></h1><p>摘要：本篇blog主要讨论java面向对象基础，包括类与对象、封装、继承、多态等</p>
+<span id="more"></span>
+
+<h2 id="面向对象思想"><a href="#面向对象思想" class="headerlink" title="面向对象思想"></a>面向对象思想</h2><h4 id="1、面向对象VS面向过程"><a href="#1、面向对象VS面向过程" class="headerlink" title="1、面向对象VS面向过程"></a>1、面向对象VS面向过程</h4><p>面向过程思想：</p>
+<ul>
+<li><p>步骤清晰：第一步、第二步…..</p>
+</li>
+<li><p>面向过程适合处理一些简单问题</p>
+</li>
+</ul>
+<p>面向对象思想：</p>
+<ul>
+<li>物以类聚，分类的思维：思考问题首先解决：应该分哪些类，然后对分类单独思考。最后才对某个分类下的细节进行面向过程思考。</li>
+<li>适合处理复杂问题，适合处理多人协作问题</li>
+</ul>
+<p>面向过程：从整体上把事物分为许多类，对每个类的某个具体方法进行面向过程分析</p>
+<h4 id="2、OOP（Object-Oriented-Programming）"><a href="#2、OOP（Object-Oriented-Programming）" class="headerlink" title="2、OOP（Object-Oriented Programming）"></a>2、OOP（Object-Oriented Programming）</h4><p>OOP的本质：<strong>以类的方式组织代码，以对象的方式组织数据</strong></p>
+<p>OO类的核心是抽象，把许多个体的相似特征提取出来，成为类，每个个体则是实例</p>
+<blockquote>
+<p>先有对象、后有类</p>
+</blockquote>
+<h4 id="3、三大特性"><a href="#3、三大特性" class="headerlink" title="3、三大特性"></a>3、三大特性</h4><p>封装：把一些方法、属性隐藏起来，暴露特定方法供外界使用</p>
+<p>继承：子类继承父类，获得父类的方法和属性</p>
+<p>多态：同一个方法，不同的实现</p>
 
       
 
@@ -208,6 +231,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -258,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://marscarm.github.io/021/10/24/java%E6%9D%82%E9%A1%B9/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://marscarm.github.io/021/10/27/javaOO/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -272,18 +306,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/10/25/javaDS/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          javaDS
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/10/23/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">双指针法详解</div>
+    <a href="/2021/10/25/javaDS/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javaDS</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -310,7 +335,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E6%9D%82%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">java杂项</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3"><span class="toc-number">1.1.</span> <span class="toc-text">面向对象思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1VS%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">1、面向对象VS面向过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81OOP%EF%BC%88Object-Oriented-Programming%EF%BC%89"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">2、OOP（Object-Oriented Programming）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="toc-number">1.1.0.3.</span> <span class="toc-text">3、三大特性</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
