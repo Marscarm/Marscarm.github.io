@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | Marscarm的博客</title>
+  <title>javaAlgorithm | Marscarm的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Marscarm的博客">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="摘要：本篇blog讨论java实现的各种排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaAlgorithm">
+<meta property="og:url" content="http://example.com/2021/10/27/javaAlgorithm/index.html">
 <meta property="og:site_name" content="Marscarm的博客">
+<meta property="og:description" content="摘要：本篇blog讨论java实现的各种排序">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-27T15:39:08.000Z">
+<meta property="article:modified_time" content="2021-10-28T06:16:28.000Z">
 <meta property="article:author" content="marscarm">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Marscarm的博客" type="application/atom+xml">
@@ -153,73 +158,109 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-javaAlgorithm" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/28/%E6%8A%8A%E4%B8%80%E4%BB%B6%E4%BA%8B%E5%81%9A%E5%88%B0%E6%9E%81%E8%87%B4/" class="archive-article-date">
-  	<time datetime="2021-10-28T06:16:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/28/%E6%8A%8A%E4%B8%80%E4%BB%B6%E4%BA%8B%E5%81%9A%E5%88%B0%E6%9E%81%E8%87%B4/">把一件事做到极致</a>
+    <h1 class="article-title" itemprop="name">
+      javaAlgorithm
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/27/javaAlgorithm/" class="archive-article-date">
+        
+        <a href="/2021/10/27/javaAlgorithm/" class="archive-article-date">
   	<time datetime="2021-10-27T15:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/27/javaAlgorithm/">javaAlgorithm</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id><a href="#" class="headerlink" title></a></h1><p>摘要：本篇blog讨论java实现的各种排序</p>
+<span id="more"></span>
 
-        <div class="article-info info-on-right">
-          
+<h2 id="java排序"><a href="#java排序" class="headerlink" title="java排序"></a>java排序</h2><h3 id="引言：十大经典排序"><a href="#引言：十大经典排序" class="headerlink" title="引言：十大经典排序"></a>引言：十大经典排序</h3><blockquote>
+<p>1、冒泡排序</p>
+<p>2、插入排序</p>
+<p>3、选择排序</p>
+<p>4、希尔排序</p>
+<p>5、快速排序</p>
+<p>6、归并排序</p>
+<p>7、桶排序</p>
+<p>8、堆排序</p>
+<p>9、计数排序</p>
+<p>10、基数排序</p>
+</blockquote>
+<h4 id="0、基本概念："><a href="#0、基本概念：" class="headerlink" title="0、基本概念："></a>0、基本概念：</h4><p>稳定性：如果排序A在B前，如果在排序过程中出现了B在A前的情况，就说该排序不稳定。即使最后可能又恢复成A在前。</p>
+<h4 id="以下讨论全部基于增序排序"><a href="#以下讨论全部基于增序排序" class="headerlink" title="以下讨论全部基于增序排序"></a><strong>以下讨论全部基于增序排序</strong></h4><h4 id="1、冒泡排序："><a href="#1、冒泡排序：" class="headerlink" title="1、冒泡排序："></a>1、冒泡排序：</h4><p><strong>A：算法概念：</strong>每次遍历需要排序的<strong>元素集</strong>，从前往后依次比较两个相邻元素的大小，如果前面的元素比后面的元素大，就交换两个元素，保证后一个数字更大。</p>
+<p><strong>B：核心思想：</strong>每趟遍历向相当于把该趟的<strong>元素集</strong>中最大的元素排到最后。n个元素，只要把n-1个最大的元素放到最后，剩下的一定是最小的。所以需要比较n-1趟。</p>
+<p><strong>C：算法步骤：</strong></p>
+<blockquote>
+<ol>
+<li>从头开始，比较相邻的两个数，如果第一个数比第二个数<strong>大</strong>，那么就交换它们位置。</li>
+<li>从开始到最后一对比较完成，一轮结束后，最后一个元素的位置已经确定。</li>
+<li>除了最后一个元素以外，前面的所有未排好序的元素重复前面两个步骤。（元素集-1）</li>
+<li>重复前面 1 ～ 3 步骤，直到所有元素都已经排好序。</li>
+</ol>
+</blockquote>
+<p><strong>D：注意边界：</strong></p>
+<ul>
+<li>n-1趟（从1开始）</li>
+<li>第k趟（从1开始）需要比较n-k个元素</li>
+<li>相等不交换（保证稳定性）</li>
+</ul>
+<p>E：代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; nums.length-i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[j]&gt;nums[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">int</span> temp = nums[j];</span><br><span class="line">                nums[j] = nums[j + <span class="number">1</span>];</span><br><span class="line">                nums[j + <span class="number">1</span>] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>F：性能分析</p>
+<ol>
+<li><p>时间：</p>
+<p>从上面的代码来看，两层 <code>for</code> 循环嵌套，假设数组的大小为 <code>n</code>，那么第一轮冒泡需要比较 <code>n-1</code> 次，第二轮由于最后一个已经排好，需要比较 <code>n-2</code> 次，依次类推下一轮比较 <code>n-3</code>，<code>n-4</code>… 直到最后只需要比较第一个元素和最后一个元素，只有 <code>1</code> 次比较，所以比较次数之和为：<br>$$<br>1+2+3+…+(n-2)+(n-1)= \frac{n\times(n-1)}{2} = \frac{1}{2}n^2-\frac{1}{2}n<br>$$</p>
+<p>上面计算时间复杂度是 $O(n^2)$，时间复杂度取系数最高的项即可，当然这是最坏情况下的时间复杂度。如果这个数组已经排好序了，我们在每一轮冒泡的时候，都增加一个标识，表示是否有交换，如果没有交换，说明数组顺序已经排好，排序提前结束。这样一来，时间复杂度就是 O(n) 了，因为只遍历了第一轮的 n 个数（第一轮遍历完就发现标识没改变，跳出）。</p>
+<p>但是并非所有情况下的排序都这么一帆风顺，除了最好和最坏的情况，还有一些中间情况，平均时间复杂度仍为 $O(n^2)$。</p>
+</li>
+<li><p>空间：由于只使用了一个中间变量temp，没有借助其他的变量，所以空间复杂度为 O(1)</p>
+</li>
+<li><p>稳定性：<strong>稳定</strong>👉只有当前面的元素比后面的元素大时，才会交换。</p>
+</li>
+</ol>
+<p>E：进阶</p>
+<p>我们可以在每一轮冒泡的时候，都增加一个标识，表示是否有交换，如果没有交换，说明数组顺序已经排好，排序提前结束。</p>
+<h4 id="2、选择排序"><a href="#2、选择排序" class="headerlink" title="2、选择排序"></a>2、选择排序</h4><p>A：算法概念：每次选出一个</p>
+<p>B：核心思想：</p>
+<p>C：算法步骤：</p>
+<p>D：注意边界：</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -231,263 +272,128 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://marscarm.github.io/021/10/27/javaAlgorithm/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/27/%E8%BD%AC%E7%A0%81%E8%B7%AF/" class="archive-article-date">
-  	<time datetime="2021-10-27T15:12:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-27</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/10/28/%E6%8A%8A%E4%B8%80%E4%BB%B6%E4%BA%8B%E5%81%9A%E5%88%B0%E6%9E%81%E8%87%B4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          把一件事做到极致
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/27/%E8%BD%AC%E7%A0%81%E8%B7%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">转码路....</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/27/%E8%BD%AC%E7%A0%81%E8%B7%AF/">转码路....</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.</span> <span class="toc-text">java排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E8%A8%80%EF%BC%9A%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">引言：十大经典排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">0、基本概念：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E8%AE%A8%E8%AE%BA%E5%85%A8%E9%83%A8%E5%9F%BA%E4%BA%8E%E5%A2%9E%E5%BA%8F%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">以下讨论全部基于增序排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%EF%BC%9A"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">1、冒泡排序：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">2、选择排序</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/27/javaOO/" class="archive-article-date">
-  	<time datetime="2021-10-27T07:58:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-27</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/27/javaOO/">javaOO</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/25/javaDS/" class="archive-article-date">
-  	<time datetime="2021-10-25T01:35:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/25/javaDS/">javaDS</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/24/java%E6%9D%82%E9%A1%B9/" class="archive-article-date">
-  	<time datetime="2021-10-24T02:56:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/24/java%E6%9D%82%E9%A1%B9/">java杂项</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/23/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2021-10-23T15:34:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/23/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95%E8%AF%A6%E8%A7%A3/">双指针法详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/22/java/" class="archive-article-date">
-  	<time datetime="2021-10-22T12:36:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/22/java/">javase</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/22/welcome/" class="archive-article-date">
-  	<time datetime="2021-10-22T02:14:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/22/welcome/">谁无暴风劲雨时，守得云开见月明</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -510,8 +416,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
