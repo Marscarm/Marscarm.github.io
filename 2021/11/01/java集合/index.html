@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>重构 | Marscarm的博客</title>
+  <title>java集合 | Marscarm的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="重构">
-<meta property="og:url" content="http://example.com/2021/10/30/%E9%87%8D%E6%9E%84/index.html">
+  <meta name="description" content="摘要：本篇文章主要讲解java集合框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java集合">
+<meta property="og:url" content="http://example.com/2021/11/01/java%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="Marscarm的博客">
+<meta property="og:description" content="摘要：本篇文章主要讲解java集合框架">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-30T07:06:33.000Z">
-<meta property="article:modified_time" content="2021-10-30T07:06:34.000Z">
+<meta property="og:image" content="http://example.com/2021/11/01/java%E9%9B%86%E5%90%88/Collection.png">
+<meta property="og:image" content="http://example.com/2021/11/01/java%E9%9B%86%E5%90%88/Iterator.gif">
+<meta property="article:published_time" content="2021-11-01T07:55:52.000Z">
+<meta property="article:modified_time" content="2021-11-02T02:37:58.000Z">
 <meta property="article:author" content="marscarm">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/11/01/java%E9%9B%86%E5%90%88/Collection.png">
   
     <link rel="alternative" href="/atom.xml" title="Marscarm的博客" type="application/atom+xml">
   
@@ -155,27 +161,95 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-重构" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-java集合" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      重构
+      java集合
     </h1>
   
 
         
-        <a href="/2021/10/30/%E9%87%8D%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-10-30T07:06:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-30</time>
+        <a href="/2021/11/01/java%E9%9B%86%E5%90%88/" class="archive-article-date">
+  	<time datetime="2021-11-01T07:55:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-01</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id><a href="#" class="headerlink" title></a></h1><p>摘要：本篇文章主要讲解java集合框架</p>
+<span id="more"></span>
+
+<h3 id="一、集合的概念"><a href="#一、集合的概念" class="headerlink" title="一、集合的概念"></a>一、集合的概念</h3><h4 id="1-1、概念："><a href="#1-1、概念：" class="headerlink" title="1.1、概念："></a>1.1、概念：</h4><p>对象的容器（放对象的地方），实现了对对象常用的操作，类似数组的功能</p>
+<h4 id="1-2、和数组区别："><a href="#1-2、和数组区别：" class="headerlink" title="1.2、和数组区别："></a>1.2、和数组区别：</h4><ul>
+<li><p>数组长度固定，集合长度不固定</p>
+</li>
+<li><p>数组可以存储基本类型和引用类型，集合只能存储引用类型（可以通过装拆箱来存储基本类型）</p>
+</li>
+</ul>
+<h4 id="1-3、位置：java-util-（需要导入）"><a href="#1-3、位置：java-util-（需要导入）" class="headerlink" title="1.3、位置：java.util.*;（需要导入）"></a>1.3、位置：java.util.*;（需要导入）</h4><h3 id="二、Collection体系集合"><a href="#二、Collection体系集合" class="headerlink" title="二、Collection体系集合"></a>二、Collection体系集合</h3><p><img src="/2021/11/01/java%E9%9B%86%E5%90%88/Collection.png" alt="Col"></p>
+<ul>
+<li><p>有序：添加顺序=遍历顺序</p>
+</li>
+<li><p>有下标：可以通过下标访问</p>
+</li>
+<li><p>Vector已经不用了</p>
+</li>
+</ul>
+<h4 id="Collection父接口"><a href="#Collection父接口" class="headerlink" title="Collection父接口"></a>Collection父接口</h4><p>特点：代表一组任意类型的对象，无序，无下标</p>
+<p><strong>!!方法：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">add();<span class="comment">//添加元素</span></span><br><span class="line">addAll(Collection&lt;?&gt; c);<span class="comment">//把另一个集合中所有元素添加到此集合</span></span><br><span class="line">clear();<span class="comment">//清空集合</span></span><br><span class="line">contains(Object o);<span class="comment">//判断是否包含 → 地址判断</span></span><br><span class="line">equals(Object o);<span class="comment">//判断对象是否相等 → 地址判断</span></span><br><span class="line">hashCode();<span class="comment">//返回此集合的哈希码值 → 对地址进行哈希方法得到的</span></span><br><span class="line">isEmpty();<span class="comment">//判断此集合是否是空集合</span></span><br><span class="line">iterator();<span class="comment">//返回此集合中的元素的迭代器 → 由集合实现</span></span><br><span class="line">remove(Object o);<span class="comment">//从该集合中删除指定元素的单个实例</span></span><br><span class="line">removeAll(Collection&lt;?&gt; c);<span class="comment">//删除调用集合中包含的所有此集合的元素</span></span><br><span class="line">retainAll(Collection&lt;?&gt; c);<span class="comment">//使调用集合中只保留与参数集合相同的元素</span></span><br><span class="line">size();<span class="comment">//返回集合中的元素个数</span></span><br><span class="line">toArray();<span class="comment">//返回一个包含此集合中所有元素的数组	？</span></span><br><span class="line">toArray(T[] a);<span class="comment">//返回包含此集合中所有元素的数组	？</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：</p>
+<p>1、remove方法：当数据类型是基本类型的包装类和String类时，remove根据内容来比对删除。当数据类型是自定义类型时，则比对地址。</p>
+<ul>
+<li><p><strong>此方法不能重写，因为方法是集合固定好的</strong></p>
+</li>
+<li><p><strong>contains方法完全一致</strong></p>
+</li>
+</ul>
+<p>2、迭代：循环or遍历</p>
+<p><strong>3、关于迭代器的指针问题</strong></p>
+<p>先贴上源码，不看源码都是扯淡！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cursor;       <span class="comment">// index of next element to return</span></span><br><span class="line">    <span class="keyword">int</span> lastRet = -<span class="number">1</span>; <span class="comment">// index of last element returned; -1 if no such</span></span><br><span class="line">    <span class="keyword">int</span> expectedModCount = modCount;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// prevent creating a synthetic constructor</span></span><br><span class="line">    Itr() &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cursor != size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="keyword">int</span> i = cursor;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= size)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">        Object[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</span><br><span class="line">        <span class="keyword">if</span> (i &gt;= elementData.length)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        cursor = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> (E) elementData[lastRet = i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">        checkForComodification();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ArrayList.<span class="keyword">this</span>.remove(lastRet);</span><br><span class="line">            cursor = lastRet;</span><br><span class="line">            lastRet = -<span class="number">1</span>;</span><br><span class="line">            expectedModCount = modCount;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析：</p>
+<p>1、迭代器相当于有两个指针，一个叫做cursor，一个叫做lastRet，lastRet指针指向的初始位置都是-1，cursor指向的则是0</p>
+<p>2、next方法本质是把cursor指针指向的东西给返回（如果cursor已经&gt;=size，就抛异常，结束），然后把cursor+1（cursor加1后的值只会用于下一次next，不会用于任何其他用处）</p>
+<p>3、remove方法用的是lastRet指针，在next方法中最后会把cursor原来的值赋给lastRet。移出成功后重新将lastRet设为-1</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(it.hasNext()) &#123;</span><br><span class="line">    Student s=(Student)it.next();</span><br><span class="line">    System.out.println(s.toString());</span><br><span class="line">    it.remove();</span><br><span class="line"><span class="comment">//上述代码能把集合清空的原因是，每次next完将cursor指针移动到下一个位置后，remove的指针刚好指向cursor指针的前一个位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/11/01/java%E9%9B%86%E5%90%88/Iterator.gif" alt="iter"></p>
+<p>实际就四个步骤：</p>
+<p>1、has判cur</p>
+<p><strong>（i = cur）</strong></p>
+<p>2、next取cur</p>
+<p>3、cur++</p>
+<p>4、lastRet=i </p>
+</blockquote>
+<p><strong>Other：</strong></p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//两种遍历的实现方法</span></span><br><span class="line"><span class="comment">//增强for，因为Collection是没有下标的，不能用普通for循环</span></span><br><span class="line"><span class="keyword">for</span> (Object object : collection) &#123;</span><br><span class="line">    Student s=(Student)object;</span><br><span class="line">    System.out.println(s.toString());</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//迭代器: hasNext()  next();  remove(); 迭代过程中不能使用使用collection的删除方法</span></span><br><span class="line">Iterator it=collection.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext()) &#123;</span><br><span class="line">    Student s=(Student)it.next();</span><br><span class="line">    System.out.println(s.toString());</span><br><span class="line"><span class="comment">//    it.remove();</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//collection.remove(new Student(&quot;王二&quot;, 22));</span></span><br><span class="line"><span class="comment">//注意：这里是没法删除的，因为对于自定义类而言，比较的是地址</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="三、List接口与实现类"><a href="#三、List接口与实现类" class="headerlink" title="三、List接口与实现类"></a>三、List接口与实现类</h3><blockquote>
+<p>实现了list接口，就间接实现了Collection接口</p>
+</blockquote>
+<p>List接口的特点：有序、有下标、元素可以重复</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//相比于集合，所有涉及脚标的方法都是新方法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, Object o)</span></span>;<span class="comment">//在index位置插入</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(<span class="keyword">int</span> index, Collection c)</span></span>;<span class="comment">//把另一个集合中的所有元素插入到index位置</span></span><br><span class="line"><span class="function">Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span></span>;<span class="comment">//返回集合中给定下标的元素</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object c)</span></span>; <span class="comment">//返回第一次出现的位置</span></span><br><span class="line"><span class="function">List&lt;E&gt; <span class="title">subList</span><span class="params">(<span class="keyword">int</span> FromIndex, <span class="keyword">int</span> toIndex)</span></span>;<span class="comment">//返回从from到to的集合元素</span></span><br><span class="line"><span class="function">E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span></span>;<span class="comment">//修改值</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建集合</span></span><br><span class="line">        List list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">//      一、添加元素</span></span><br><span class="line">        list.add(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">        list.add(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">        list.add(<span class="number">0</span>,<span class="string">&quot;c&quot;</span>);</span><br><span class="line">        System.out.println(list.size());</span><br><span class="line">        System.out.println(list.toString());</span><br><span class="line"><span class="comment">//      二、删除元素</span></span><br><span class="line">        list.remove(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="comment">//      list.remove(0);</span></span><br><span class="line">        System.out.println(list.toString());</span><br><span class="line"><span class="comment">//      三、遍历元素</span></span><br><span class="line"><span class="comment">//        1、普通for</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++) &#123;</span><br><span class="line">            System.out.println(list.get(i));</span><br><span class="line">            <span class="comment">//注意：get方法返回的是Object，要用子类型就要强制转换</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        2、增强for</span></span><br><span class="line">        <span class="keyword">for</span> (Object o : list) &#123;</span><br><span class="line">            System.out.println(o);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        3、迭代器</span></span><br><span class="line">        Iterator iterator = list.iterator();</span><br><span class="line">        <span class="keyword">while</span>(iterator.hasNext())&#123;</span><br><span class="line">            System.out.println(iterator.next());</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        普通iterator的功能仍是只有三个</span></span><br><span class="line"><span class="comment">//        ListIterator和普通iterator的区别是，前者还可以向前遍历，添加、删除、修改元素</span></span><br><span class="line"><span class="comment">//        4、列表迭代器</span></span><br><span class="line">        ListIterator listIterator = list.listIterator();</span><br><span class="line"><span class="comment">//        从前向后遍历</span></span><br><span class="line">        <span class="keyword">while</span>(listIterator.hasNext())&#123;</span><br><span class="line">            System.out.println(listIterator.nextIndex() + <span class="string">&quot;:&quot;</span> + listIterator.next());</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        指针已经移动到末尾了，否则还需要移动指针</span></span><br><span class="line"><span class="comment">//        从后向前遍历</span></span><br><span class="line">        <span class="keyword">while</span>(listIterator.hasPrevious())&#123;</span><br><span class="line">            System.out.println(listIterator.previousIndex() + <span class="string">&quot;:&quot;</span> + listIterator.previous());</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//      四、获取元素 根据对象返回位置</span></span><br><span class="line">        System.out.println(list.indexOf(<span class="string">&quot;b&quot;</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于Integer类型的List</span></span><br><span class="line"><span class="comment">//list的remove默认参数是index，可以强转为对象来删,或者用indexOf获取下标来删</span></span><br><span class="line">        list.remove((Object) <span class="number">2</span>);</span><br><span class="line">        list.remove(list.indexOf(<span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<h4 id="List的实现类"><a href="#List的实现类" class="headerlink" title="List的实现类"></a>List的实现类</h4><p>数组：连续元素</p>
+<h3 id="四、Set接口与实现类"><a href="#四、Set接口与实现类" class="headerlink" title="四、Set接口与实现类"></a>四、Set接口与实现类</h3><h3 id="五、Map接口与实现类"><a href="#五、Map接口与实现类" class="headerlink" title="五、Map接口与实现类"></a>五、Map接口与实现类</h3><h3 id="六、泛型和工具类"><a href="#六、泛型和工具类" class="headerlink" title="六、泛型和工具类"></a>六、泛型和工具类</h3>
       
 
       
@@ -204,6 +278,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -254,7 +339,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://marscarm.github.io/021/10/30/%E9%87%8D%E6%9E%84/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://marscarm.github.io/021/11/01/java%E9%9B%86%E5%90%88/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -268,18 +353,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/10/31/java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          java网络编程
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/10/28/%E6%8A%8A%E4%B8%80%E4%BB%B6%E4%BA%8B%E5%81%9A%E5%88%B0%E6%9E%81%E8%87%B4/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">把一件事做到极致</div>
+    <a href="/2021/10/31/java%E5%B8%B8%E7%94%A8%E7%B1%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">java常用类</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -306,7 +382,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%9B%86%E5%90%88%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.0.1.</span> <span class="toc-text">一、集合的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1%E3%80%81%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">1.1、概念：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2%E3%80%81%E5%92%8C%E6%95%B0%E7%BB%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">1.2、和数组区别：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3%E3%80%81%E4%BD%8D%E7%BD%AE%EF%BC%9Ajava-util-%EF%BC%88%E9%9C%80%E8%A6%81%E5%AF%BC%E5%85%A5%EF%BC%89"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">1.3、位置：java.util.*;（需要导入）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Collection%E4%BD%93%E7%B3%BB%E9%9B%86%E5%90%88"><span class="toc-number">1.0.2.</span> <span class="toc-text">二、Collection体系集合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Collection%E7%88%B6%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.0.2.1.</span> <span class="toc-text">Collection父接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81List%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="toc-number">1.0.3.</span> <span class="toc-text">三、List接口与实现类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#List%E7%9A%84%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">List的实现类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Set%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="toc-number">1.0.4.</span> <span class="toc-text">四、Set接口与实现类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81Map%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%AE%9E%E7%8E%B0%E7%B1%BB"><span class="toc-number">1.0.5.</span> <span class="toc-text">五、Map接口与实现类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%B3%9B%E5%9E%8B%E5%92%8C%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">1.0.6.</span> <span class="toc-text">六、泛型和工具类</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
