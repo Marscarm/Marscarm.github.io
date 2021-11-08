@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 算法 | Marscarm的博客</title>
+  <title>java注解与反射 | Marscarm的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Marscarm的博客">
-<meta property="og:url" content="http://example.com/tags/%E7%AE%97%E6%B3%95/index.html">
+  <meta name="description" content="摘要：本篇blog讲解java注解和反射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java注解与反射">
+<meta property="og:url" content="http://example.com/2021/11/07/java%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84/index.html">
 <meta property="og:site_name" content="Marscarm的博客">
+<meta property="og:description" content="摘要：本篇blog讲解java注解和反射">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-07T07:49:09.000Z">
+<meta property="article:modified_time" content="2021-11-08T07:26:32.000Z">
 <meta property="article:author" content="marscarm">
 <meta name="twitter:card" content="summary">
   
@@ -153,173 +157,256 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-java注解与反射" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java注解与反射
+    </h1>
+  
+
+        
+        <a href="/2021/11/07/java%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84/" class="archive-article-date">
+  	<time datetime="2021-11-07T07:49:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id><a href="#" class="headerlink" title></a></h1><p>摘要：本篇blog讲解java注解和反射</p>
+<span id="more"></span>
+
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><blockquote>
+<p>注释：给人看的</p>
+<p>注释：给程序看的</p>
+</blockquote>
+<h3 id="一、什么是注解"><a href="#一、什么是注解" class="headerlink" title="一、什么是注解"></a>一、什么是注解</h3><ul>
+<li><p>从JDK5.0引入</p>
+</li>
+<li><p>可以被其他程序读取（如编译器）</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//什么是注解</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnoDemo1</span> </span>&#123;</span><br><span class="line">    <span class="comment">//@Override就是注解</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注解是以“@注释名”在代码中存在的，还可以添加一些参数值</p>
+<p>可以附加在包、类、方法、field（字段）等上面，相当于给他们添加了额外的辅助信息（例如起到检查的作用）</p>
+<p>我们可以通过反射机制编程实现对这些元数值的访问</p>
+<h3 id="二、常见注解种类"><a href="#二、常见注解种类" class="headerlink" title="二、常见注解种类"></a>二、常见注解种类</h3><h4 id="2-1-内置注解"><a href="#2-1-内置注解" class="headerlink" title="2.1 内置注解"></a>2.1 内置注解</h4><p>@Override：用于修辞方法，表示一个方法声明打算<strong>重写</strong>超类中的另一个方法声明</p>
+<p>@Deprecated：用于修辞方法，属性，类，表示不鼓励程序员使用这样的元素，通常是因为它很危险或者存在更好的选择</p>
+<p>@SuppressWarnings：用来抑制编译时的警告信息（镇压警告），需要参数</p>
+<ul>
+<li>@SuppressWarnings（“all”）</li>
+<li>@SuppressWarnings（“unchecked”）</li>
+<li>@SuppressWarnings（value={“unchecked”，“deprecation”}）</li>
+<li>etc…</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Override重写注解</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Deprecated 不推荐，危险or更好，但可以用</span></span><br><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;all&quot;)</span> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">void</span> <span class="title">main</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@SuppressWarnings(&quot;all&quot;) 被修饰的不会报警告、编译器不会检查</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-元注解"><a href="#2-2-元注解" class="headerlink" title="2.2 元注解"></a>2.2 元注解</h4><h5 id="元注解的作用"><a href="#元注解的作用" class="headerlink" title="元注解的作用"></a>元注解的作用</h5><p>元注解的作用就是负责注解其他注解</p>
+<ul>
+<li>@Target：表示注解的作用对象</li>
+<li>@Retention：表示注解的作用时间范围：源码→字节码→运行时（如果运行时还可以作用，那源码和字节码的时候当然也可以。即高级兼容低级）</li>
+<li>@Document：表示是否会生成文档</li>
+<li>@Inherited：说明子类可以继承父类的注解</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//表示注解的作用时间范围：源码→字节码→运行时</span></span><br><span class="line"><span class="comment">//runtime&gt;class&gt;source</span></span><br><span class="line"><span class="meta">@Retention(value = RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="comment">//表示注解的作用对象</span></span><br><span class="line"><span class="meta">@Target(value = &#123;ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="comment">//表示是否会生成文档</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation&#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-自定义注解"><a href="#2-3-自定义注解" class="headerlink" title="2.3 自定义注解"></a>2.3 自定义注解</h4><p>(1).使用@interface关键字定义注解，注意关键字的位置使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口，由编译程序自动完成其他细节。在定义注解时，不能继承其他的注解或接口。</p>
+<p>(2).成员以无参数无异常的方式声明，注意区别一般类成员变量的声明其中的每一个方法实际上是声明了一个配置参数。方法的名称就是参数的名称</p>
+<p>(3).可以使用default为成员指定一个默认值</p>
+<p>(4).成员类型是受限的，合法的类型包括原始类型以及String、Class、Annotation、Enumeration （JAVA的基本数据类型有8种：byte(字节)、short(短整型)、int(整数型)、long(长整型)、float(单精度浮点数类型)、double(双精度浮点数类型)、char(字符类型)、boolean(布尔类型）</p>
+<p>(5).注解类可以没有成员，没有成员的注解称为标识注解，例如JDK注解中的@Override、@Deprecation</p>
+<p>(6).如果注解只有一个成员，并且把成员取名为value()，则在使用时可以忽略成员名和赋值号“=” ,例如JDK注解的@SuppviseWarnings ；如果成员名不为value，则使用时需指明成员名和赋值号”=”，</p>
+<p>(7).注解元素要有值，定义注解元素时，经常使用空字符串、0等作为默认值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DIYAnno</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//有参数的注解建议带括号，如果注解中的参数都有默认值，则可以不传入</span></span><br><span class="line">    <span class="meta">@MyAnnotation1(age=19,schools=&#123;&quot;&quot;,&quot;&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//如果注解只有一个参数，且参数名为value，则传递参数时可以不用加参数名</span></span><br><span class="line">    <span class="meta">@MyAnnotation2(&quot;abc&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE,ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation1&#123;</span><br><span class="line">    <span class="comment">//注解的参数：参数类型+方法名+（）</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">id</span><span class="params">()</span> <span class="keyword">default</span> -1</span>;<span class="comment">//通常-1代表不存在</span></span><br><span class="line">    String[] schools() <span class="keyword">default</span> &#123;<span class="string">&quot;abc&quot;</span>,<span class="string">&quot;def&quot;</span>&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE,ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation2&#123;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<ul>
+<li>注解参数传递没有顺序，都得指明参数名</li>
+</ul>
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h3 id="一、什么是反射"><a href="#一、什么是反射" class="headerlink" title="一、什么是反射"></a>一、什么是反射</h3><p>更加灵活，更加不安全</p>
+<p>甚至私有对象！！</p>
+<p>为什么叫反射，因为不是直接从这个类本身得到信息的，而是从它的反射对象class上得到的，它的反射对象就像一面镜子。反射出了这个类的内部信息</p>
+<p>反射低效率，通常情况下，new出来比反射出类对象快许多</p>
+<p>实体类：包含属性、有参无参构造方法，setter&amp;getter方法的类，通常用于数据处理</p>
+<p>通常可以用hashcode判断对象是否是同一个</p>
+<p>final修饰方法：final定义的方法不能被重写。</p>
+<p>每个类都有一个Class类型的对象</p>
+<p>获取反射对象时，泛型可以不要</p>
+<p>每个类的实例都记得自己是哪个Class实例生成的</p>
+<p>Class是类，class是关键字</p>
+<p>由一个对象，就能知道类，如果知道更多信息，就更快</p>
+<p>只要类型一样，反射出来的类结果就一样。如两个长度不同的一维数组，反射的结果的hashcode却相同</p>
+<p>在初始化过程中会收集静态代码块和类变量的赋值操作</p>
+<p>new出来一个对象，对象保留指向其类的class对象的指针，从而根据反射获得这个类的其他东西</p>
+<p>p9是有问题的：<br>1、不是直接加载，而是等用到的时候再加载。</p>
+<p>2、创建类的实例的时候，类的三阶段（装载、链接、初始化）都已经完成</p>
+<p>包含public static void main的类才能被一开始就加载</p>
+<p>c++、c写的肯定读不到</p>
+<p>双亲委派机制：保证安全（如果自己定义一个类，和上级加载器冲突了，java会优先调用他自己的，而不是你写的）</p>
+<p>class forName有什么意义呢？</p>
+<p>获得属性的值？</p>
+<p>getDeclared可以获得私有属性，否则无法获得？</p>
+<p>通过setAccessible关闭检测，使得私有属性可以更改，</p>
+<p>如果不关闭，不能直接操作，但可以访问？</p>
+<p>不强转没法获得指定注解的值？</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/07/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-11-07T02:49:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/07/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E7%AE%97%E6%B3%95/">奇奇怪怪的算法</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://marscarm.github.io/021/11/07/java%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%8F%8D%E5%B0%84/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/11/03/%E4%BD%8D%E8%BF%90%E7%AE%97/" class="archive-article-date">
-  	<time datetime="2021-11-02T16:03:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-03</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/11/08/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Mysql数据库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/07/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA%E7%9A%84%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">奇奇怪怪的算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/11/03/%E4%BD%8D%E8%BF%90%E7%AE%97/">位运算</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.0.1.</span> <span class="toc-text">一、什么是注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E6%B3%A8%E8%A7%A3%E7%A7%8D%E7%B1%BB"><span class="toc-number">2.0.2.</span> <span class="toc-text">二、常见注解种类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%86%85%E7%BD%AE%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">2.1 内置注解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.0.2.2.</span> <span class="toc-text">2.2 元注解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%83%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.0.2.2.1.</span> <span class="toc-text">元注解的作用</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.0.2.3.</span> <span class="toc-text">2.3 自定义注解</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84"><span class="toc-number">3.</span> <span class="toc-text">反射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E5%B0%84"><span class="toc-number">3.0.1.</span> <span class="toc-text">一、什么是反射</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/27/java%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2021-10-27T15:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-27</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/27/java%E6%8E%92%E5%BA%8F/">java排序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/23/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2021-10-23T15:34:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/23/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95%E8%AF%A6%E8%A7%A3/">双指针法详解</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -342,9 +429,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
